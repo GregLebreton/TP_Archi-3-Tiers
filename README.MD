@@ -6,7 +6,7 @@
 
   - Vagrant
                                           
-# l'infrastructure
+# création de l'infrastructure
 
       $ sudo git clone https://GregLebreton/TP_Arch-3-Tiers.git
 
@@ -144,7 +144,7 @@
 
           $  mysql_secure_installation
            
-   * choisir yes aux questions en ajoutant un mot de passe root
+   * répondre yes aux questions en renseignant un mot de passe root
 
    3) redémarrage de MariaDB
 
