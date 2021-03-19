@@ -36,9 +36,14 @@
       
           $ sudo nano /etc/sites-available/reverse_proxy_nginx.conf
 
-
-          ...
-
+              # Le reverse proxy en simple http nécessite seulement d'écouter sur le port 80 et de rediriger par le proxy_pass
+              # vers la machine contenant le Wordpress
+              server {
+                  listen 80;
+                  location / {
+                    proxy_pass http://192.168.60.3;
+                    }
+                  }
 
           $ sudo systemctl restart nginx
       
@@ -71,7 +76,35 @@
  
           $ sudo nano /etc/sites-available/wordpress_nginx.conf
 
-          ...
+              # Ce nginx va recevoir les requête du nginx reverse proxy et va servir le wordpress
+              # contenu dans le repertoire racine définit dans "root"
+              server {
+                  listen 80;
+                  root /var/www/html/wordpress;
+                  index index.php index.html index.htm;
+                  server_name _;
+
+                  access_log /var/log/nginx/wordpress_access.log;
+                  error_log /var/log/nginx/wordpress_error.log;
+
+                  client_max_body_size 64M;
+
+                  location / {
+                      try_files $uri $uri/ /index.php?$args;
+                      }
+
+                  location ~ \.php$ {
+                      try_files $uri =404;
+                      include /etc/nginx/fastcgi_params;
+                      fastcgi_read_timeout 3600s;
+                      fastcgi_buffer_size 128k;
+                      fastcgi_buffers 4 128k;
+                      fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                      fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+                      fastcgi_index index.php;
+                          }
+
+                      }
       
   C) installation sur la machine database:
   
