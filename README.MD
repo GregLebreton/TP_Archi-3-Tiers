@@ -131,10 +131,12 @@
               GRANT ALL PRIVILEGES ON wpdb.* TO "wpuser"@"192.168.60.3";
               FLUSH PRIVILEGES;
               exit
+  ```
+  ```
               
            $ sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
            
-     - trouver la ligne avec la directive bind-address = 127.0.0.1 et commenter cette ligne avec un #      
+   -> trouver la ligne avec la directive bind-address = 127.0.0.1 et commenter cette ligne avec un #      
   
            # choisir yes aux questions en ajoutant un mot de passe root    
            $  mysql_secure_installation
