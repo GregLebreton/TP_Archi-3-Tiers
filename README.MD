@@ -108,6 +108,8 @@
       
   C) installation sur la machine database:
   
+    1) installation de MariaDB
+    
           $ sudo apt-get install software-properties-common dirmngr
 
           $ sudo apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
@@ -117,6 +119,16 @@
           $ sudo apt update
 
           $ sudo apt install mariadb-server mariadb-client -y
+          
+    2) configuration Mariadb
+    
+            CREATE DATABASE wpdb;
+            CREATE USER ‘wpuser’@’localhost’ IDENTIFIED BY ‘dbpassword’;
+            GRANT ALL PRIVILEGES ON wordpress.* TO ‘wpuser’@’localhost’;
+            CREATE USER ‘wpuser’@’192.168.60.3’ IDENTIFIED BY ‘dbpassword’;
+            GRANT ALL PRIVILEGES ON wordpress.* TO ‘wpuser’@’192.168.60.3’;
+            FLUSH PRIVILEGES;
+            exit
     
       
       
