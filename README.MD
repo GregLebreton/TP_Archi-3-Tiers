@@ -142,6 +142,8 @@
           
    2) configuration Mariadb
 
+          
+          # ici on créer des droits pour un utilisateur en local et venant de la machine Wordpress
           $ sudo mysql
     
               CREATE DATABASE wpdb;
