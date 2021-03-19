@@ -22,6 +22,14 @@
 
       $ sudo vagrant ssh database
       
+# sur votre machine locale, renseigner dans le fichier /etc/hosts le nom de domaine avec l'IP de la machine correpondant 
+# au server d'entrée Nginx:
+
+          $ sudo nano /etc/hosts
+
+             192.168.60.2  monsite.com www.monsite.com
+
+
 # installation sur les machines:
       
   A) installation sur la machine nginxserver:
@@ -41,9 +49,15 @@
               server {
                   listen 80;
                   location / {
-                    proxy_pass http://192.168.60.3;
+                    proxy_pass http://www.monsite.com;
                     }
                   }
+                  
+   3) on ajoute la variable d'envirronnement dans le fichier /etc/hosts pour y ajouter la redirection vers la machine wordpress
+
+          $ sudo nano /etc/hosts
+          
+              192.168.60.3  monsite.com www.monsite.com
                   
    3) on redémarre Nginx
 
