@@ -50,7 +50,7 @@
       
   B) installations sur la machine wordpress:
   
-   1) installation du package wordpress:
+   1) installation du package wordpressb et du serveur nginx:
 
           $ sudo apt update && sudo apt upgrade
 
@@ -131,26 +131,31 @@
               GRANT ALL PRIVILEGES ON wpdb.* TO "wpuser"@"192.168.60.3";
               FLUSH PRIVILEGES;
               exit
-  ```
-  ```
               
-           $ sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
+   * modifier la configuration de MariaDB pour qu'elle accepte les connections venant de la machine Wordpress
+              
+          $ sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
            
-   * trouver la ligne avec la directive bind-address = 127.0.0.1 et remplacer la ligne par: #bind-address = 127.0.0.1     
+   * trouver la ligne avec la directive bind-address = 127.0.0.1 et remplacer la ligne par: 
+   
+          #bind-address = 127.0.0.1  
+          
+   * sécuriser MariaDB en supprimant les failles de sécurité
 
-           $  mysql_secure_installation
+          $  mysql_secure_installation
            
-   * choisir yes aux questions en ajoutant un mot de passe root    
+   * choisir yes aux questions en ajoutant un mot de passe root
 
-     
-           
-           
-           
-    
+   3) redémarrage de MariaDB
+
+          $ sudo systemctl restart mysql
+ 
+   * Créer un certificat avec Openssl
+   
+          $ sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/ssl/private/localhost.key -out /etc/ssl/certs/localhost.crt
+          
+   * ajouter le chemin des certificats:
+   
+          $      
+       
       
-      
-
-       
-       
-       
-    
