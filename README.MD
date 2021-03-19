@@ -72,7 +72,7 @@
 
           $ sudo chmod 755 /var/www
       
-   3) configuration du nginx:
+   3) configuration du nginx de Wordpress:
  
           $ sudo nano /etc/sites-available/wordpress_nginx.conf
 
@@ -136,10 +136,12 @@
               
            $ sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
            
-   -> trouver la ligne avec la directive bind-address = 127.0.0.1 et commenter cette ligne avec un #      
-  
-           # choisir yes aux questions en ajoutant un mot de passe root    
+   * trouver la ligne avec la directive bind-address = 127.0.0.1 et remplacer la ligne par: #bind-address = 127.0.0.1     
+
            $  mysql_secure_installation
+           
+   * choisir yes aux questions en ajoutant un mot de passe root    
+
      
            
            
