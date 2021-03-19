@@ -22,13 +22,15 @@
 
       $ sudo vagrant ssh database
       
-A) installation sur la machine nginxserver:
+# installation sur les machines:
+      
+  A) installation sur la machine nginxserver:
 
       $ sudo apt update && sudo apt upgrade
       
       $ sudo apt instal nginx
       
-# installations sur la machine wordpress:
+  B) installations sur la machine wordpress:
 
       $ sudo apt update && sudo apt upgrade
       
