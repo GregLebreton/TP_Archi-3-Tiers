@@ -1,4 +1,4 @@
-                                          ### TP_Archi-3-Tiers ###
+                                    ### TP_Archi-3-Tiers ###
  
  
  
@@ -16,9 +16,35 @@
     
 # connection SSH aux machines:
 
-      $ sudo vagrant ssh wordpress
+      $ sudo vagrant ssh nginxserver
 
       $ sudo vagrant ssh wordpress
 
-      $ sudo vagrant ssh wordpress
+      $ sudo vagrant ssh database
+      
+A) installation sur la machine nginxserver:
+
+      $ sudo apt update && sudo apt upgrade
+      
+      $ sudo apt instal nginx
+      
+# installations sur la machine wordpress:
+
+      $ sudo apt update && sudo apt upgrade
+      
+      $ sudo apt install nginx
+      
+      $ cd /var/www/html/
+
+      $ wget https://wordpress.org/latest.tar.gz
+
+      $ tar -xvzf latest.tar.gz
+      
+ # configuration de Wordpress:
+ 
+      $ cd wordpress
+
+      $ cp wp-config-sample.php wp-config.php
+      
+ # configuration du nginx:
     
