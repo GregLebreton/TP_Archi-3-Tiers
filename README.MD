@@ -44,6 +44,8 @@
                     proxy_pass http://192.168.60.3;
                     }
                   }
+                  
+   3) on redémarre Nginx
 
           $ sudo systemctl restart nginx
       
@@ -105,6 +107,10 @@
                           }
 
                       }
+   4) redémarrage de Nginx
+                      
+          $ sudo systemctl restart nginx
+          
       
   C) installation sur la machine database:
   
