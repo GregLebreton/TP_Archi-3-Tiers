@@ -110,7 +110,7 @@
   
    1) installation de MariaDB
     
-          $ sudo apt-get install software-properties-common dirmngr
+          $ sudo apt-get install software-properties-common dirmngr -y
 
           $ sudo apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
 
@@ -121,14 +121,27 @@
           $ sudo apt install mariadb-server mariadb-client -y
           
    2) configuration Mariadb
+
+          $ sudo mysql
     
-          CREATE DATABASE wpdb;
-          CREATE USER ‘wpuser’@’localhost’ identified by ‘dbpassword’;
-          GRANT ALL PRIVILEGES ON wordpress.* TO ‘wpuser’@’localhost’;
-          CREATE USER ‘wpuser’@’192.168.60.3’ IDENTIFIED BY ‘dbpassword’;
-          GRANT ALL PRIVILEGES ON wordpress.* TO ‘wpuser’@’192.168.60.3’;
-          FLUSH PRIVILEGES;
-          exit
+              CREATE DATABASE wpdb;
+              CREATE USER "wpuser"@"localhost" identified by "dbpassword";
+              GRANT ALL PRIVILEGES ON wpdb.* TO "wpuser"@"localhost";
+              CREATE USER "wpuser"@"192.168.60.3" identified by "dbpassword";
+              GRANT ALL PRIVILEGES ON wpdb.* TO "wpuser"@"192.168.60.3";
+              FLUSH PRIVILEGES;
+              exit
+              
+           $ sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
+           
+     - trouver la ligne avec la directive bind-address = 127.0.0.1 et commenter cette ligne avec un #      
+  
+           # choisir yes aux questions en ajoutant un mot de passe root    
+           $  mysql_secure_installation
+     
+           
+           
+           
     
       
       
