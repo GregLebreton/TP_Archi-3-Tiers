@@ -123,7 +123,7 @@
    2) configuration Mariadb
     
           CREATE DATABASE wpdb;
-          CREATE USER ‘wpuser’@’localhost’ IDENTIFIED BY ‘dbpassword’;
+          CREATE USER ‘wpuser’@’localhost’ identified by ‘dbpassword’;
           GRANT ALL PRIVILEGES ON wordpress.* TO ‘wpuser’@’localhost’;
           CREATE USER ‘wpuser’@’192.168.60.3’ IDENTIFIED BY ‘dbpassword’;
           GRANT ALL PRIVILEGES ON wordpress.* TO ‘wpuser’@’192.168.60.3’;
