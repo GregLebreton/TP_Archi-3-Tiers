@@ -45,7 +45,7 @@
       
   B) installations sur la machine wordpress:
   
-    1) installation du package wordpress:
+    * installation du package wordpress:
 
       $ sudo apt update && sudo apt upgrade
       
