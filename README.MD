@@ -26,64 +26,64 @@
       
   A) installation sur la machine nginxserver:
   
-    1) installation du package nginx:
+   1) installation du package nginx:
 
-      $ sudo apt update && sudo apt upgrade
+          $ sudo apt update && sudo apt upgrade
+
+          $ sudo apt install nginx
       
-      $ sudo apt install nginx
+   2) configuration du nginx:
       
-    2) configuration du nginx:
-      
-      $ sudo nano /etc/sites-available/reverse_proxy_nginx.conf
-      
-      
-      ...
-      
-      
-      $ sudo systemctl restart nginx
+          $ sudo nano /etc/sites-available/reverse_proxy_nginx.conf
+
+
+          ...
+
+
+          $ sudo systemctl restart nginx
       
       
   B) installations sur la machine wordpress:
   
-    * installation du package wordpress:
+   1) installation du package wordpress:
 
-      $ sudo apt update && sudo apt upgrade
-      
-      $ sudo apt install nginx
-      
-      $ cd /var/www/html/
+          $ sudo apt update && sudo apt upgrade
 
-      $ wget https://wordpress.org/latest.tar.gz
+          $ sudo apt install nginx
 
-      $ tar -xvzf latest.tar.gz
+          $ cd /var/www/html/
+
+          $ wget https://wordpress.org/latest.tar.gz
+
+          $ tar -xvzf latest.tar.gz
       
-    2) configuration du Wordpress:
+   2) configuration du Wordpress:
  
-      $ cd wordpress
+          $ cd wordpress
 
-      $ cp wp-config-sample.php wp-config.php
+          $ cp wp-config-sample.php wp-config.php
+
+          $ sudo chown -R www-data:www-data /var/www/html/wordpress
+
+          $ sudo chmod 755 /var/www
       
-      $ sudo chown -R www-data:www-data /var/www/html/wordpress
-      
-      $ sudo chmod 755 /var/www
-      
-    3) configuration du nginx:
+   3) configuration du nginx:
  
-      $ sudo nano /etc/sites-available/wordpress_nginx.conf
-      
-      ...
+          $ sudo nano /etc/sites-available/wordpress_nginx.conf
+
+          ...
       
   C) installation sur la machine database:
   
-      $ sudo apt-get install software-properties-common dirmngr
+          $ sudo apt-get install software-properties-common dirmngr
 
-      $ sudo apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
+          $ sudo apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
 
-      $ sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] http://mariadb.mirrors.ovh.net/MariaDB/repo/10.5/debian buster main'
+          $ sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] http://mariadb.mirrors.ovh.net/MariaDB/repo/10.5/debian buster main'
 
-      $ sudo apt update
+          $ sudo apt update
 
-      $ sudo apt install mariadb-server mariadb-client -y
+          $ sudo apt install mariadb-server mariadb-client -y
     
       
       
