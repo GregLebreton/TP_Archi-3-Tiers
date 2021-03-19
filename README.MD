@@ -22,8 +22,7 @@
 
       $ sudo vagrant ssh database
       
-# sur votre machine locale, renseigner dans le fichier /etc/hosts le nom de domaine avec l'IP de la machine correpondant 
-# au server d'entrée Nginx:
+# sur votre machine locale, renseigner dans le fichier /etc/hosts le nom de domaine avec l'IP de la machine correpondant au server d'entrée Nginx:
 
           $ sudo nano /etc/hosts
 
