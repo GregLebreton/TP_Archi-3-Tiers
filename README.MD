@@ -37,9 +37,11 @@
 
           $ sudo apt update && sudo apt upgrade
 
-          $ sudo apt install nginx
+          $ sudo apt install nginx -y
       
    2) configuration du nginx:
+
+          $ sudo touch /etc/nginx/sites-available/reverse_proxy_nginx.conf
       
           $ sudo nano /etc/sites-available/reverse_proxy_nginx.conf
 
@@ -52,13 +54,17 @@
                     }
                   }
                   
-   3) on ajoute la variable d'envirronnement dans le fichier /etc/hosts pour y ajouter la redirection vers la machine wordpress
+   3) creation du lien symbolique pour activer la config dans les sites activés:
+
+          $ sudo ln -s /etc/nginx/sites-available/reverse_proxy_nginx.conf /etc/nginx/sites-enabled/reverse_proxy_nginx.conf
+                  
+   4) on ajoute la variable d'envirronnement dans le fichier /etc/hosts pour y ajouter la redirection vers la machine wordpress
 
           $ sudo nano /etc/hosts
           
               192.168.60.3  monsite.com www.monsite.com
                   
-   3) on redémarre Nginx
+   5) on redémarre Nginx
 
           $ sudo systemctl restart nginx
       
@@ -67,33 +73,52 @@
   
    1) installation du package wordpressb et du serveur nginx:
 
-          $ sudo apt update && sudo apt upgrade
+          $ sudo apt update && sudo apt upgrade -y
 
           $ sudo apt install nginx
 
           $ cd /var/www/html/
 
-          $ wget https://wordpress.org/latest.tar.gz
+          $ sudo wget https://wordpress.org/latest.tar.gz
 
-          $ tar -xvzf latest.tar.gz
+          $ sudo tar -xvzf latest.tar.gz
+          
+          $ sudo apt install php7.3-fpm php7.3-mysql-y
       
    2) configuration du Wordpress:
  
           $ cd wordpress
 
-          $ cp wp-config-sample.php wp-config.php
+          $ sudo cp wp-config-sample.php wp-config.php
 
           $ sudo chown -R www-data:www-data /var/www/html/wordpress
 
           $ sudo chmod 755 /var/www
-      
+          
+          $ sudo nano /var/www/html/wordpress/wp-config.php
+
+              // ** MySQL settings - You can get this info from your web host ** //
+              /** The name of the database for WordPress */
+              define( 'DB_NAME', 'wpdb' );
+
+              /** MySQL database username */
+              define( 'DB_USER', 'wpuser' );
+
+              /** MySQL database password */
+              define( 'DB_PASSWORD', 'dbpassword' );
+
+              /** MySQL hostname */
+              define( 'DB_HOST', '192.168.60.4' );
+
+                 
    3) configuration du nginx de Wordpress:
  
-          $ sudo nano /etc/sites-available/wordpress_nginx.conf
+          $ sudo nano /etc/nginx/sites-available/wordpress_nginx.conf
 
               # Ce nginx va recevoir les requête du nginx reverse proxy et va servir le wordpress
               # contenu dans le repertoire racine définit dans "root"
-              server {
+             
+             server {
                   listen 80;
                   root /var/www/html/wordpress;
                   index index.php index.html index.htm;
@@ -120,7 +145,12 @@
                           }
 
                       }
-   4) redémarrage de Nginx
+                      
+   4) creation du lien symbolique pour activer la config dans les sites activés:
+
+          $ sudo ln -s /etc/nginx/sites-available/wordpress_nginx.conf /etc/nginx/sites-enabled/wordpress_nginx.conf
+                      
+   5) redémarrage de Nginx
                       
           $ sudo systemctl restart nginx
           
@@ -128,6 +158,8 @@
   C) installation sur la machine database:
   
    1) installation de MariaDB
+
+          $ sudo apt-get update
     
           $ sudo apt-get install software-properties-common dirmngr -y
 
@@ -171,12 +203,6 @@
 
           $ sudo systemctl restart mysql
  
-   * Créer un certificat avec Openssl
-   
-          $ sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/ssl/private/localhost.key -out /etc/ssl/certs/localhost.crt
-          
-   * ajouter le chemin des certificats:
-   
-          $      
+# rendez vous à l'adresse www.monsite.com sur votre navigateur de la machine locale    
        
       
