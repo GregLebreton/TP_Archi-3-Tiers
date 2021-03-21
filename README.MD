@@ -35,7 +35,7 @@
   
    1) installation du package nginx:
 
-          $ sudo apt update && sudo apt upgrade
+          $ sudo apt update && sudo apt upgrade -y
 
           $ sudo apt install nginx -y
       
@@ -43,7 +43,7 @@
 
           $ sudo touch /etc/nginx/sites-available/reverse_proxy_nginx.conf
       
-          $ sudo nano /etc/sites-available/reverse_proxy_nginx.conf
+          $ sudo nano /etc/nginx/sites-available/reverse_proxy_nginx.conf
 
               # Le reverse proxy en simple http nécessite seulement d'écouter sur le port 80 et de rediriger par le proxy_pass
               # vers la machine contenant le Wordpress
@@ -63,8 +63,12 @@
           $ sudo nano /etc/hosts
           
               192.168.60.3  monsite.com www.monsite.com
+
+   5) suppréssion de la configuration par défaut
+
+          $ sudo unlink /etc/nginx/site-enabled/default
                   
-   5) on redémarre Nginx
+   6) on redémarre Nginx
 
           $ sudo systemctl restart nginx
       
@@ -138,7 +142,7 @@
                       include /etc/nginx/fastcgi_params;
                       fastcgi_read_timeout 3600s;
                       fastcgi_buffer_size 128k;
-                     sudo fastcgi_buffers 4 128k;
+                      fastcgi_buffers 4 128k;
                       fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
                       fastcgi_pass unix:/run/php/php7.3-fpm.sock;
                       fastcgi_index index.php;
@@ -149,8 +153,12 @@
    4) creation du lien symbolique pour activer la config dans les sites activés:
 
           $ sudo ln -s /etc/nginx/sites-available/wordpress_nginx.conf /etc/nginx/sites-enabled/wordpress_nginx.conf
+          
+   5) suppréssion de la config par défaut
+
+          $ sudo unlink /etc/nginx/site-enabled/default
                       
-   5) redémarrage de Nginx
+   6) redémarrage de Nginx
                       
           $ sudo systemctl restart nginx
           
@@ -159,7 +167,7 @@
   
    1) installation de MariaDB
 
-          $ sudo apt-get update
+          $ sudo apt update && sudo apt upgrade -y
     
           $ sudo apt-get install software-properties-common dirmngr -y
 
@@ -195,7 +203,8 @@
           
    * sécuriser MariaDB en supprimant les failles de sécurité
 
-          $  mysql_secure_installation
+          $  sudo mysql_secure_installation
+        note: mot de passe root machine database: vagrant
            
    * répondre yes aux questions en renseignant un mot de passe root
 
