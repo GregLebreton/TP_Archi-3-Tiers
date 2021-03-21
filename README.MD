@@ -1,4 +1,4 @@
-                                    ### TP_Archi-3-Tiers ###
+                                 ### TP_Archi-3-Tiers ###
  
  
  
@@ -75,15 +75,15 @@
 
           $ sudo apt update && sudo apt upgrade -y
 
-          $ sudo apt install nginx
+          $ sudo apt install nginx -y
 
           $ cd /var/www/html/
 
           $ sudo wget https://wordpress.org/latest.tar.gz
 
-          $ sudo tar -xvzf latest.tar.gz
+          $ sudo tar -xvzf latest.tar.gz && sudo rm -rf latest.tar.gz
           
-          $ sudo apt install php7.3-fpm php7.3-mysql-y
+          $ sudo apt install php7.3-fpm php7.3-mysql -y
       
    2) configuration du Wordpress:
  
@@ -138,7 +138,7 @@
                       include /etc/nginx/fastcgi_params;
                       fastcgi_read_timeout 3600s;
                       fastcgi_buffer_size 128k;
-                      fastcgi_buffers 4 128k;
+                     sudo fastcgi_buffers 4 128k;
                       fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
                       fastcgi_pass unix:/run/php/php7.3-fpm.sock;
                       fastcgi_index index.php;
