@@ -8,7 +8,7 @@
                                           
 # création de l'infrastructure
 
-      $ sudo git clone https://GregLebreton/TP_Archi-3-Tiers.git
+      $ sudo git clone https://github.com/GregLebreton/TP_Archi-3-Tiers.git
 
       $ cd TP_Arch-3-Tiers 
 
