@@ -66,6 +66,8 @@
 
    5) suppréssion de la configuration par défaut
 
+          $ cd /etc/nginx/sites-enabled
+
           $ sudo unlink /etc/nginx/sites-enabled/default
                   
    6) on redémarre Nginx
@@ -155,6 +157,8 @@
           $ sudo ln -s /etc/nginx/sites-available/wordpress_nginx.conf /etc/nginx/sites-enabled/wordpress_nginx.conf
           
    5) suppréssion de la config par défaut
+          
+          $ cd /etc/nginx/sites-enabled
 
           $ sudo unlink /etc/nginx/sites-enabled/default
                       
