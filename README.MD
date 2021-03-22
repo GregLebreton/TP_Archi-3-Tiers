@@ -66,7 +66,7 @@
 
    5) suppréssion de la configuration par défaut
 
-          $ sudo unlink /etc/nginx/site-enabled/default
+          $ sudo unlink /etc/nginx/sites-enabled/default
                   
    6) on redémarre Nginx
 
@@ -156,7 +156,7 @@
           
    5) suppréssion de la config par défaut
 
-          $ sudo unlink /etc/nginx/site-enabled/default
+          $ sudo unlink /etc/nginx/sites-enabled/default
                       
    6) redémarrage de Nginx
                       
