@@ -10,7 +10,7 @@
 
       $ sudo git clone https://github.com/GregLebreton/TP_Archi-3-Tiers.git
 
-      $ cd TP_Arch-3-Tiers 
+      $ cd TP_Archi-3-Tiers 
 
       $ sudo vagrant up
     
